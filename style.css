@@ -50,41 +50,15 @@ table {
 /*start*/
 
 html {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Helvetica Neue", sans-serif;
     box-sizing: border-box;
 }
 
 body {
-    background-color: #edf5ff		;
-    display: flex;
+    background-color: #edf5ff;
+    display: grid;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
-
-.screen {
-    background-color: #d0e2f7 ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    height: 30%;
-    margin: 25px;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-.numbers {
-    background-color: #d0e2f7 ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-    height: 100%;
-    margin: 25px;
-    padding: 25px;
-    border-radius: 10px;
-}
-
-

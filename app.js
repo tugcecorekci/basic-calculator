@@ -59,7 +59,7 @@ minusBtn.addEventListener('click', minusFunc)
 
 function minusFunc() {
     firstValue = parseInt(screen.textContent)
-    operation = sub
+    operation = minus
     screen.textContent = "0"
 }
 const multiBtn = document.querySelector('#multi')
