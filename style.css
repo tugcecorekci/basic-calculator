@@ -58,6 +58,8 @@ html {
 	font-weight: 400;
 }
 
+/* solution display:flex
+
 body {
     background-color: #edf5ff;
     min-height: 100vh;
@@ -113,7 +115,62 @@ body {
 input[data-zero] {
 	width: 14rem;
 	border-bottom-left-radius: 1rem;
+} */
+
+/* solution display:grid */
+
+body {
+    background-color: #edf5ff;
+    min-height: 100vh;
+	width: 100vw;
+	display: grid;
+    justify-content: center;
+    align-items: center;
 }
+
+.calculator {
+	display: grid;
+	grid-template-rows: 1fr 3fr;
+	min-width: 30rem;
+	min-height: 45rem;
+}
+
+.screen {
+	background-color: #404045;
+	padding: 15px;
+	padding-bottom: 10px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	border-top-left-radius: 1rem;
+	border-top-right-radius: 1rem;
+}
+
+.operationScreen {
+	color: #e6e6e5;
+	font-size: 5rem;
+	max-width: 25rem;
+}
+
+.buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.buttons input {
+	background-color: #75777e;
+	outline: none;
+	border: solid .8px #404045;
+	color: #e6e6e5;
+	font-size: 2.5rem;
+}
+
+input[data-zero] {
+	grid-column: 1 /span 2;
+	border-bottom-left-radius: 1rem;
+}
+
+/* unchanged part */
 
 #equal {
 	border-bottom-right-radius: 1rem;
@@ -125,4 +182,17 @@ input[data-zero] {
 
 #plus, #minus, #multi, #divide, #equal {
 	background-color: #F2A33C;
+	font-size: 4rem;
+}
+
+.buttons input:active {
+	background-color: #b0b3be;
+}
+
+#clear:active, #pm:active, #percent:active, #equal:active {
+background-color: #75777e ;
+}
+
+#plus:active, #minus:active, #multi:active, #divide:active, #equal:active {
+	background-color: #c48432;
 }
