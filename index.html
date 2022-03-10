@@ -7,35 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
 </head>
 
 <body>
-    <div class="screen">
-        <p class="operationScreen"></p>
-    </div>
-    <div class="buttons">
-        <input type="button" value="AC" class="actions" id="clear">
-        <input type="button" value="&#177" class="actions" id="pm">
-        <input type="button" value="&#37" class="actions" id="percent">
-        <input type="button" value="7" class="numbers" id="7">
-        <input type="button" value="8" class="numbers" id="8">
-        <input type="button" value="9" class="numbers" id="9">
-        <input type="button" value="4" class="numbers" id="4">
-        <input type="button" value="5" class="numbers" id="5">
-        <input type="button" value="6" class="numbers" id="6">
-        <input type="button" value="1" class="numbers" id="1">
-        <input type="button" value="2" class="numbers" id="2">
-        <input type="button" value="3" class="numbers" id="3">
-        <input type="button" value="0" class="numbers" id="0" data-zero>
-        <input type="button" value="&#44" class="numbers" id="comma">
-        <input type="button" value="&#61" class="operations" id="equal">
-        <input type="button" value="&#43" class="operations" id="plus">
-        <input type="button" value="&#8722;" class="operations" id="minus">
-        <input type="button" value="&#215" class="operations" id="multi">
-        <input type="button" value="&#247" class="operations" id="divide">
+    <div class="calculator">
+        <div class="screen">
+            <p class="operationScreen"></p>
+        </div>
+        <div class="buttons">
+            <input type="button" value="C" class="actions" id="clear">
+            <input type="button" value="&#177" class="actions" id="pm">
+            <input type="button" value="&#37" class="actions" id="percent">
+            <input type="button" value="&#247" class="operations" id="divide">
+            <input type="button" value="7" class="numbers" id="7">
+            <input type="button" value="8" class="numbers" id="8">
+            <input type="button" value="9" class="numbers" id="9">
+            <input type="button" value="&#215" class="operations" id="multi">
+            <input type="button" value="4" class="numbers" id="4">
+            <input type="button" value="5" class="numbers" id="5">
+            <input type="button" value="6" class="numbers" id="6">
+            <input type="button" value="&#8722;" class="operations" id="minus">
+            <input type="button" value="1" class="numbers" id="1">
+            <input type="button" value="2" class="numbers" id="2">
+            <input type="button" value="3" class="numbers" id="3">
+            <input type="button" value="&#43" class="operations" id="plus">
+            <input type="button" value="0" class="numbers" id="0" data-zero>
+            <input type="button" value="&#44" class="numbers" id="comma">
+            <input type="button" value="&#61" class="operations" id="equal">
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
