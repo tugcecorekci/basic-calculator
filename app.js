@@ -1,9 +1,22 @@
 let screen = document.querySelector('.operationScreen')
 screen.textContent = "0"
+
 let firstValue = 0
 let secondValue = 0
 let operation = null
 let isPreviousOperationEqual = false
+
+function fontSizeChange() {
+    if (screen.textContent.length < 9) {
+        screen.style.fontSize = "3.5vw"
+    }
+    else if (screen.textContent.length > 8 && screen.textContent.length < 11) {
+        screen.style.fontSize = "3vw"
+    }
+    else if (screen.textContent.length > 10 && screen.textContent.length < 13) {
+        screen.style.fontSize = "2.5vw"
+    }
+}
 
 function getValue() {
     for (let i = 0; i < 10; i++) {
@@ -34,9 +47,12 @@ function clickNum(a) {
         screen.textContent += button.value
         secondValue = screen.textContent
     }
+    fontSizeChange()
 }
 
 getValue()
+
+
 
 const plusBtn = document.querySelector('#plus')
 const minusBtn = document.querySelector('#minus')
@@ -190,3 +206,5 @@ function keyNum(e) {
         }
     }
 }
+
+

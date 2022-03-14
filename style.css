@@ -137,7 +137,7 @@ body {
 
 .screen {
 	background-color: #404045;
-	padding: 15px;
+	padding: 10px;
 	padding-bottom: 10px;
 	display: flex;
 	justify-content: flex-end;
@@ -147,11 +147,16 @@ body {
 }
 
 .operationScreen {
+	display: inline-block;
 	color: #e6e6e5;
-	font-size: 3vw;
-	max-width: 25rem;
+	text-align: right;
+	font-size: 3.5vw;
+	max-width: 28rem;
 	max-height: 10rem;
-	word-break: break-all;
+	width: 12ch;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: clip;
 }
 
 .buttons {
