@@ -1,9 +1,9 @@
 let screen = document.querySelector('.operationScreen')
 screen.textContent = "0"
-let currentValue = 0
 let firstValue = 0
 let secondValue = 0
 let operation = null
+let isPreviousOperationEqual = false
 
 function getValue() {
     for (let i = 0; i < 10; i++) {
@@ -24,15 +24,15 @@ function clickNum(a) {
         else {
             screen.textContent += button.value
         }
-        currentValue = screen.textContent
+        firstValue = screen.textContent
     }
     else if (screen.textContent == firstValue) {
         screen.textContent = button.value
-        currentValue = screen.textContent
+        secondValue = screen.textContent
     }
     else {
         screen.textContent += button.value
-        currentValue = screen.textContent
+        secondValue = screen.textContent
     }
 }
 
@@ -51,49 +51,64 @@ divideBtn.addEventListener('click', divideFunc)
 equalBtn.addEventListener('click', equalFunc)
 
 function equalFunc() {
-    secondValue = currentValue
     operation()
     firstValue = screen.textContent
+    isPreviousOperationEqual = true
+    console.log(screen.textContent)
+    console.log(firstValue)
+    console.log(secondValue)
 }
 
 function add() {
-    screen.textContent = parseInt(firstValue) + parseInt(secondValue)
+    screen.textContent = parseFloat(firstValue) + parseFloat(secondValue)
 }
 
 function minus() {
-    screen.textContent = parseInt(firstValue) - parseInt(secondValue)
+    screen.textContent = parseFloat(firstValue) - parseFloat(secondValue)
 }
 
 function multi() {
-    screen.textContent = parseInt(firstValue) * parseInt(secondValue)
+    screen.textContent = parseFloat(firstValue) * parseFloat(secondValue)
 }
 
 function divide() {
-    screen.textContent = parseInt(firstValue) / parseInt(secondValue)
+    screen.textContent = parseFloat(firstValue) / parseFloat(secondValue)
 }
 
 function plusFunc() {
+    if (operation && isPreviousOperationEqual == false) {
+        operation()
+    }
     operation = add
-    firstValue = currentValue
-    currentValue = 0
+    firstValue = screen.textContent
+    isPreviousOperationEqual = false
 }
 
 function minusFunc() {
+    if (operation && isPreviousOperationEqual == false) {
+        operation()
+    }
     operation = minus
-    firstValue = currentValue
-    currentValue = 0
+    firstValue = screen.textContent
+    isPreviousOperationEqual = false
 }
 
 function multiFunc() {
+    if (operation && isPreviousOperationEqual == false) {
+        operation()
+    }
     operation = multi
-    firstValue = currentValue
-    currentValue = 0
+    firstValue = screen.textContent
+    isPreviousOperationEqual = false
 }
 
 function divideFunc() {
+    if (operation && isPreviousOperationEqual == false) {
+        operation()
+    }
     operation = divide
-    firstValue = currentValue
-    currentValue = 0
+    firstValue = screen.textContent
+    isPreviousOperationEqual = false
 }
 
 const clearBtn = document.querySelector('#clear')
@@ -102,6 +117,7 @@ clearBtn.addEventListener('click', clearFunc)
 function clearFunc() {
     screen.textContent = "0"
     firstValue = 0
+    secondValue = 0
     operation = null
 }
 
@@ -109,7 +125,7 @@ const percentBtn = document.querySelector('#percent')
 percentBtn.addEventListener('click', percentFunc)
 
 function percentFunc() {
-    firstValue = parseInt(screen.textContent)
+    firstValue = parseFloat(screen.textContent)
     if (firstValue == 0) return
     let result = firstValue / 100
     screen.textContent = result
@@ -123,65 +139,54 @@ function pmFunc() {
         screen.textContent = "-0"
     }
     else {
-        firstValue = parseInt(screen.textContent)
-        firstValue = -firstValue
-        screen.textContent = firstValue
+        currentValue = parseFloat(screen.textContent)
+        currentValue = -currentValue
+        screen.textContent = currentValue
     }
 }
 
 //keyboard events
 document.addEventListener('keydown', keyNum)
 
+const keyValues = {
+    0: "0",
+    1: "1",
+    2: "2",
+    3: "3",
+    4: "4",
+    5: "5",
+    6: "6",
+    7: "7",
+    8: "8",
+    9: "9",
+    "Escape": "clear",
+    "%": "percent",
+    "+": "plus",
+    "-": "minus",
+    "*": "multi",
+    "/": "divide",
+    "=": "equal",
+    "Enter": "equal",
+    ",": "comma"
+}
+
 function keyNum(e) {
-    if (isNaN(e.key) != true) {
-        if (operation == null) {
-            if (screen.textContent == "0") {
-                screen.textContent = parseInt(e.key)
-            }
-            else if (screen.textContent == "-0") {
-                screen.textContent = e.key * (-1)
-            }
-            else {
-                screen.textContent += e.key
-            }
-            currentValue = screen.textContent
-        }
-        else if (screen.textContent == firstValue) {
-            screen.textContent = e.key
-            currentValue = screen.textContent
-        }
-        else {
-            screen.textContent += e.key
-            currentValue = screen.textContent
-        }
+    console.log(e.key)
+    if (keyValues[e.key] && keyValues[e.key] != "minus") {
+        let keyNumberId = keyValues[e.key]
+        let keys = document.getElementById(keyNumberId)
+        keys.dispatchEvent(new MouseEvent('click', {
+            view: window,
+            bubbles: true,
+            cancelable: true
+        }))
     }
-    else if (e.key == "+") {
-        plusFunc()
-    }
-    else if (e.key == "-") {
+    else if (keyValues[e.key] == "minus") {
         if (screen.textContent == "0") {
             pmFunc()
         }
         else {
             minusFunc()
         }
-    }
-    else if (e.key == "*") {
-        multiFunc()
-    }
-    else if (e.key == "/") {
-        divideFunc()
-    }
-    else if (e.key == "=") {
-        operation()
-    }
-    else if (e.key == "Enter") {
-        operation()
-    }
-    else if (e.key == "%") {
-        percentFunc()
-    }
-    else if (e.key == "Escape") {
-        clearFunc()
     }
 }
