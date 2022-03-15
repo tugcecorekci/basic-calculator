@@ -25,12 +25,11 @@ function fontSizeChange() {
     }
     else if (screen.textContent.length == 12) {
         screen.style.fontSize = "2.2vw"
-        screen.style.textAlign = "right"
-    }
-    else if (screen.textContent.length == 13) {
-        screen.style.width = "13ch"
         screen.style.textAlign = "left"
+    }
+    else if (screen.textContent.length > 12) {
         screen.style.fontSize = "2vw"
+        screen.style.textAlign = "left"
     }
 }
 
@@ -91,25 +90,25 @@ function equalFunc() {
 function add() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) + parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",")
+    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
 }
 
 function minus() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) - parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",")
+    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
 }
 
 function multi() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) * parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",")
+    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
 }
 
 function divide() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) / parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",")
+    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
 }
 
 function plusFunc() {
@@ -192,9 +191,7 @@ function pmFunc() {
         screen.textContent = "-0"
     }
     else {
-        currentValue = parseFloat(screen.textContent)
-        currentValue = -currentValue
-        screen.textContent = currentValue
+        screen.textContent = parseFloat(screen.textContent) * (-1)
     }
     fontSizeChange()
 }
