@@ -89,6 +89,7 @@ body {
 
 .operationScreen {
 	padding-right: 15px;
+	padding-bottom: 6px;
 	display: inline-block;
 	color: #e6e6e5;
 	text-align: right;

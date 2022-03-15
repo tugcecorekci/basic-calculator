@@ -15,21 +15,13 @@ function fontSizeChange() {
         screen.style.fontSize = "3vw"
         screen.style.textAlign = "right"
     }
-    else if (screen.textContent.length == 10) {
-        screen.style.fontSize = "2.7vw"
+    else if (screen.textContent.length == 9) {
+        screen.style.fontSize = "2.5vw"
         screen.style.textAlign = "right"
     }
-    else if (screen.textContent.length == 11) {
+    else if (screen.textContent.length > 10) {
         screen.style.fontSize = "2.4vw"
         screen.style.textAlign = "right"
-    }
-    else if (screen.textContent.length == 12) {
-        screen.style.fontSize = "2.2vw"
-        screen.style.textAlign = "left"
-    }
-    else if (screen.textContent.length > 12) {
-        screen.style.fontSize = "2vw"
-        screen.style.textAlign = "left"
     }
 }
 
@@ -42,6 +34,7 @@ function getValue() {
 
 function clickNum(a) {
     let button = document.getElementById(a)
+    if (screen.textContent.length > 9) return
     if (operation == null) {
         if (screen.textContent == "0") {
             screen.textContent = button.value
@@ -63,6 +56,7 @@ function clickNum(a) {
         secondValue = screen.textContent
     }
     fontSizeChange()
+    controlLength(screen.textContent)
 }
 
 getValue()
@@ -79,36 +73,55 @@ multiBtn.addEventListener('click', multiFunc)
 divideBtn.addEventListener('click', divideFunc)
 equalBtn.addEventListener('click', equalFunc)
 
+function controlLength(e) {
+    if (e.length > 9) {
+        screen.textContent = "too long!"
+        firstValue = 0
+        secondValue = 0
+        operation = null
+        fontSizeChange()
+
+    }
+}
+
 function equalFunc() {
     if (!operation || !firstValue || !secondValue) return
     operation()
     firstValue = screen.textContent
     isPreviousOperationEqual = true
     fontSizeChange()
+    controlLength(screen.textContent)
 }
 
 function add() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) + parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
+    screen.textContent = result.toString().replace(".", ",")
+    controlLength(screen.textContent)
 }
 
 function minus() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) - parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
+    screen.textContent = result.toString().replace(".", ",")
+    controlLength(screen.textContent)
+
 }
 
 function multi() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) * parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
+    screen.textContent = result.toString().replace(".", ",")
+    controlLength(screen.textContent)
+
 }
 
 function divide() {
     if (!firstValue || !secondValue) return
     let result = parseFloat(firstValue.replace(",", ".")) / parseFloat(secondValue.replace(",", "."))
-    screen.textContent = result.toString().replace(".", ",").slice(0, 12)
+    screen.textContent = result.toString().replace(".", ",")
+    controlLength(screen.textContent)
+
 }
 
 function plusFunc() {
@@ -190,6 +203,15 @@ function pmFunc() {
     if (screen.textContent == "0") {
         screen.textContent = "-0"
     }
+    else if (screen.textContent == "0,") {
+        screen.textContent = "-0,"
+    }
+    else if (screen.textContent == "-0") {
+        screen.textContent = "0"
+    }
+    else if (screen.textContent == "-0,") {
+        screen.textContent = "0,"
+    }
     else {
         screen.textContent = parseFloat(screen.textContent) * (-1)
     }
@@ -200,6 +222,7 @@ const commaBtn = document.querySelector('#comma')
 commaBtn.addEventListener('click', commaFunc)
 
 function commaFunc() {
+    if (screen.textContent.includes(",")) return
     if (screen.textContent == "0") {
         screen.textContent = "0,"
     }
@@ -207,9 +230,7 @@ function commaFunc() {
         screen.textContent = "-0,"
     }
     else {
-        let screenNum = parseFloat(screen.textContent)
-        let screenNumString = screenNum.toString()
-        screen.textContent = screenNumString.concat(",")
+        screen.textContent = screen.textContent.concat(",")
         fontSizeChange()
     }
 }
